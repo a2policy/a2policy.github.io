@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A² Policy Advice · Brussels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #0a1628;
+    --navy2:   #0f2040;
+    --navy3:   #1b3a5c;
+    --gold:    #c9a84c;
+    --gold-l:  #e8c97a;
+    --gold-d:  #8b6914;
+    --cream:   #f5f0e8;
+    --mid:     #7a8fa8;
+    --light:   #b0c4d8;
+    --border:  rgba(201,168,76,0.25);
+    --border2: rgba(255,255,255,0.08);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 2.5rem; }
+
+  /* ── SUBTLE GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV */
+  nav {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    padding: 1.8rem 0;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── GOLD LEFT BAR (matching banner) */
+  .gold-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-d) 100%);
+    z-index: 100;
+  }
+
+  /* ── HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 0 5rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    align-items: end;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.6rem;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold-l);
+  }
+
+  .hero-body {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--light);
+    max-width: 380px;
+  }
+
+  .credential {
+    border-left: 2px solid var(--gold);
+    padding: 0.9rem 1.3rem;
+    margin-bottom: 1rem;
+    background: rgba(201,168,76,0.06);
+  }
+
+  .cred-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .cred-value {
+    font-size: 0.85rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  /* ── RULE */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── EXPERTISE */
+  .expertise {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .pillar {
+    border-top: 1.5px solid var(--gold-d);
+    padding-top: 1.5rem;
+  }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.2);
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .pillar-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .pillar-body {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--light);
+  }
+
+  /* ── ABOUT */
+  .about {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0;
+    background: rgba(27,58,92,0.25);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+    margin: 0;
+  }
+
+  .about .container {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .about-body {
+    font-size: 0.85rem;
+    line-height: 1.85;
+    color: var(--light);
+    margin-bottom: 1rem;
+  }
+
+  .stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+
+  .stat {
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 1.5rem;
+  }
+
+  .stat:last-child { border-bottom: none; }
+
+  .stat-n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--gold-l);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-l {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* ── SECTORS */
+  .sectors {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--mid);
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  /* ── QUOTE */
+  .quote-section {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.5;
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  blockquote::before {
+    content: '\201C';
+    font-size: 4rem;
+    color: var(--gold-d);
+    display: block;
+    line-height: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  cite {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  /* ── CONTACT */
+  .contact {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0;
+    text-align: center;
+    background: rgba(201,168,76,0.04);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .contact-sub {
+    font-size: 0.85rem;
+    color: var(--mid);
+    margin-bottom: 1.8rem;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-d);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s;
+  }
+
+  .contact-email:hover { color: var(--gold-l); }
+
+  /* ── FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border2);
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── RESPONSIVE */
+  @media (max-width: 700px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-title { font-size: 2.5rem; }
+    .pillars { grid-template-columns: 1fr; }
+    .about .container { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="gold-bar"></div>
+
+<nav>
+  <div class="container">
+    <a class="logo" href="#">A<span>²</span> Policy Advice</a>
+    <ul class="nav-links">
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container" style="display:contents">
+    <div>
+      <div class="eyebrow">EU Public Affairs · Brussels · Est. 2014</div>
+      <h1 class="hero-title">Where policy<br>meets <em>strategic<br>complexity</em></h1>
+      <p class="hero-body">A² Policy Advice is an independent Brussels-based consultancy specialising in EU regulatory strategy, cybersecurity policy, space governance and defence — at the intersection of European and transatlantic markets.</p>
+    </div>
+    <div>
+      <div class="credential">
+        <div class="cred-label">Principal advisor</div>
+        <div class="cred-value">William Dazy · 25 years EU institutional experience</div>
+      </div>
+      <div class="credential">
+        <div class="cred-label">Recognition</div>
+        <div class="cred-value">Top 100 Brussels Consultants · Best in Brussels, 2023</div>
+      </div>
+      <div class="credential">
+        <div class="cred-label">Current programme</div>
+        <div class="cred-value">Cybersecurity Policy · Harvard Kennedy School, 2026</div>
+      </div>
+      <div class="credential">
+        <div class="cred-label">Markets</div>
+        <div class="cred-value">European Union · Canada · United States</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <div class="container">
+    <div class="section-label">Areas of practice</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">EU Regulatory Strategy</div>
+        <p class="pillar-body">Legislative engagement, trilogue dynamics, coalition design and stakeholder positioning across EU digital and cybersecurity regulation — AI Act, DSA, NIS2, Cyber Resilience Act, EU Space Act.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Space & Defence Policy</div>
+        <p class="pillar-body">Institutional strategy for satellite operators and aerospace companies at the intersection of EU space governance, GOVSATCOM, IRIS², and the Canada-EU Security and Defence Partnership.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Transatlantic Positioning</div>
+        <p class="pillar-body">Strategic communications and institutional access for organisations navigating EU market entry, Readiness 2030 procurement, and the evolving EU-Canada regulatory interface in defence and cyber.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div>
+      <h2 class="about-title">Independent advice at the frontier of European policy</h2>
+      <p class="about-body">A² Policy Advice advises a selective roster of technology, satellite, cybersecurity and defence companies on their EU institutional strategy. We operate where legislative drafting meets geopolitical stakes — and deliver the kind of senior, committed advisory that larger agencies cannot replicate.</p>
+      <p class="about-body">Our clients have included operators and manufacturers in the digital, satellite and cybersecurity sectors navigating their most consequential regulatory challenges in Brussels, including mandates for SES, Viasat, Intelsat, Cisco and McAfee/Trellix.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">25+</div>
+        <div class="stat-l">Years EU institutional experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2014</div>
+        <div class="stat-l">Founded · Brussels</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">EU · CA · US</div>
+        <div class="stat-l">Markets served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors">
+  <div class="container">
+    <div class="section-label">Dossiers & regulatory frameworks</div>
+    <div class="tags">
+      <span class="tag">NIS2</span>
+      <span class="tag">Cyber Resilience Act</span>
+      <span class="tag">EU Space Act</span>
+      <span class="tag">AI Act</span>
+      <span class="tag">Digital Markets Act</span>
+      <span class="tag">DSA</span>
+      <span class="tag">IRIS²</span>
+      <span class="tag">GOVSATCOM</span>
+      <span class="tag">SAFE · Readiness 2030</span>
+      <span class="tag">Data Act</span>
+      <span class="tag">Critical Infrastructure</span>
+      <span class="tag">Dual-use Regulation</span>
+      <span class="tag">EU Defence Industrial Policy</span>
+      <span class="tag">ENISA Frameworks</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="container">
+    <blockquote>
+      The gap between what legislators write and what engineers know remains dangerously wide. Closing it requires fluency in both languages.
+      <cite>William Dazy · Founder, A² Policy Advice</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="contact-title">Start a conversation</h2>
+    <p class="contact-sub">For new mandates, advisory enquiries and strategic partnerships</p>
+    <a class="contact-email" href="mailto:william@a2policy.eu">william@a2policy.eu</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-copy">© 2026 A² Policy Advice · Brussels · Belgium · EU Transparency Register</div>
+    <div class="footer-links">Independent boutique · Est. 2014</div>
+  </div>
+</footer>
+
+</body>
+</html>
